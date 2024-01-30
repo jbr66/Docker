@@ -1,0 +1,8 @@
+FROM ubuntu
+USER root
+RUN apt-get update && apt-get install -y openssh-client openssh-server openjdk-8-jdk
+RUN groupadd -g 1000 jenkins
+RUN useradd -d /home/jenkins -g jenkins -s /bin/bash -u 1000 jenkins
+RUN mkdir /run/sshd
+EXPOSE 22
+ENTRYPOINT exec /home/jenkins/startssh.sh

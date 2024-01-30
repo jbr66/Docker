@@ -17,11 +17,11 @@ services:
       - mariadb
 
 
-  #adminer:
-    #image: adminer
-    #restart: always
-    #ports:
-      #- 8080:8080
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 9500:8080
 
 volumes:
   mariadb:

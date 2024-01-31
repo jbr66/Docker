@@ -1,0 +1,43 @@
+version: "1.1"
+services:
+  app:
+    image: jbr66/jenkins
+    ports:
+      - 127.0.0.1:8080:8080
+      - 127.0.0.1:50000:50000
+    volumes:
+      - jenkins:/var/jenkins_home
+    networks:
+      - jenkins
+
+  node1:
+    image: jbr66/node
+    volumes:
+      - node1:/home/jenkins
+    networks:
+      jenkins:
+        aliases:
+          - node1
+
+  node2:
+    image: jbr66/node
+    volumes:
+      - node1:/home/jenkins
+    networks:
+      jenkins:
+        aliases:
+          - node2
+
+volumes:
+  node1:
+    external: true
+    name: node1
+  jenkins:
+    external: true
+    name: jenkins
+
+networks:
+  jenkins:
+    external: true
+    name: jenkins
+

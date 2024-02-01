@@ -17,3 +17,9 @@ Commands to start:
 Connect:
 
   Use 'localhost:8080' in webbrowser
+
+## Progress
+
+    $ docker start Progress
+    $ docker export Progress > progress.tar
+    $ docker import - newprogress < progress.tar

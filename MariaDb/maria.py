@@ -56,12 +56,34 @@ except mariadb.Error as e:
     sys.exit(1)
 
 # Get cursor
-cur = conn.cursor()
+cur  = conn.cursor()
 
 country = "Net%"
 cur.execute("SELECT country_id, name, area from countries where name like ?", (country,))
 
+print("Query on countries")
+print(20*'-')
 for c, n, a in cur:
     print(f"CountryId: {c}, Name: {n}, Area: {a}")
+
+cur.execute("SHOW tables")
+
+print("\nTables in {}".format(cfg['database']))
+print(20*'-')
+tables = []
+for t in cur:
+    print("\t{}".format(t[0]))
+    tables.append(t)
+
+print("\nFields per table:")
+print(20*'-')
+for t in tables:
+    tablename = t[0]
+    print(tablename)
+    print(len(tablename)*'-')
+    sqlstat = "describe " + tablename
+    cur.execute(sqlstat)
+    for f, t, n, k, d, e in cur:
+        print(f"\t{f} {t} {n} {k} {d} {e}")
 
 conn.close()

@@ -1,0 +1,6 @@
+Access from Python to MariaDB
+-----------------------------
+
+$ sudo apt install libmariadb3 libmariadb-dev
+$ pip3 install mariadb
+

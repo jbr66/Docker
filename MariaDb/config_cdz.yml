@@ -1,0 +1,6 @@
+# Config for Cadzand
+user: 'root'
+password: 'example'
+host: '192.168.2.51'
+port: 3306
+database: 'nation'
